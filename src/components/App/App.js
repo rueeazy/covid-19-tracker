@@ -5,6 +5,8 @@ import InfoBox from "../InfoBox/InfoBox";
 import Map from "../Map/Map";
 import LineGraph from "../LineGraph/LineGraph";
 import Table from "../Table/Table";
+import "leaflet/dist/leaflet.css";
+
 import {
   FormControl,
   Select,
@@ -18,6 +20,12 @@ function App() {
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState([]);
   const [tableData, setTableData] = useState([]);
+  const [mapCountries, setMapCountries] = useState([]);
+  const [mapCenter, setMapCenter] = useState({
+    lat: 34.80746,
+    lng: -40.4796,
+  });
+  const [mapZoom, setMapZoom] = useState(3);
 
   // Get list of countries
   useEffect(() => {
@@ -32,6 +40,7 @@ function App() {
         const sortedData = sortData(results);
         setTableData(sortedData);
         setCountries(countries);
+        setMapCountries(results);
       } else {
         console.log(response.error);
       }
@@ -60,6 +69,9 @@ function App() {
     const response = await fetch(url);
     const data = await response.json();
     setCountryInfo(data);
+
+    setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+    setMapZoom(4);
   };
 
   return (
@@ -100,7 +112,7 @@ function App() {
             cases={countryInfo.deaths}
           />
         </div>
-        <Map />
+        <Map countries={mapCountries} center={mapCenter} zoom={mapZoom} />
       </div>
       <Card className="app__right">
         <CardContent>

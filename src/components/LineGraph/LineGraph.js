@@ -26,7 +26,7 @@ const options = {
       {
         type: "time",
         time: {
-          format: "MM/DD/YY",
+          parser: "MM/DD/YY",
           tooltipFormat: "ll",
         },
       },
@@ -51,7 +51,6 @@ const buildChartData = (data, casesType) => {
   let chartData = [];
   let lastDataPoint;
   for (let date in data.cases) {
-    console.log(date, data.cases);
     if (lastDataPoint) {
       let newDataPoint = {
         x: date,
