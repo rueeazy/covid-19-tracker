@@ -3,6 +3,7 @@ import "./App.css";
 import { sortData } from "../../util.js";
 import InfoBox from "../InfoBox/InfoBox";
 import Map from "../Map/Map";
+import LineGraph from "../LineGraph/LineGraph";
 import Table from "../Table/Table";
 import {
   FormControl,
@@ -104,10 +105,8 @@ function App() {
       <Card className="app__right">
         <CardContent>
           <h3>Live Cases By Country</h3>
-          {/* table */}
           <Table countries={tableData} />
-          <h3>Worldwide New Cases</h3>
-          {/* graph */}
+          <LineGraph />
         </CardContent>
       </Card>
     </div>
