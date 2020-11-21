@@ -4,6 +4,8 @@
   height: 400px;
   color: #6a5d5d;
   background-color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .table tr {
